@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+gem "celluloid",    "~> 0.15.2"
+gem "twitter",      "~> 5.10.0"
+# gem "pry"
+# gem "pry-debugger"
