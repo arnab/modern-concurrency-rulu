@@ -440,8 +440,8 @@ Celluloid::Actor[:djoker].async.serve
 
 ## What about Ruby?
 
-* Celluloid
-* DCell
+* Celluloid: http://celluloid.io/
+* DCell: https://github.com/celluloid/dcell
 
 ---
 
@@ -603,3 +603,9 @@ TODO: go-block scaling example
 
 # RuLu
 ![fit](http://cdn.shopify.com/s/files/1/0134/1572/products/Merci_Boucoup_Card.jpg)
+
+---
+
+# Links
+
+* https://github.com/arnab/modern-concurrency-rulu/
