@@ -1,5 +1,5 @@
 require 'twitter'
-require 'joe'
+require 'jo'
 require 'celluloid'
 
 client = Twitter::REST::Client.new do |config|
