@@ -46,4 +46,4 @@ Celluloid::Actor[:djoker].other_player = Celluloid::Actor[:rafa]
 
 Celluloid::Actor[:djoker].async.serve
 
-sleep(1000)
+gets

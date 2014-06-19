@@ -1,10 +1,10 @@
 defmodule Player do
-  def loop(name, other_player, phrase) do
+  def play(name, other_player, phrase) do
     receive do
       {:serve} ->
           IO.puts "#{name}: serving"
           send(other_player, {:play_next, 1})
-          loop(name, other_player, phrase)
+          play(name, other_player, phrase)
 
       {:play_next, rally_count} ->
         :timer.sleep(700)
@@ -23,25 +23,25 @@ defmodule Player do
           send(other_player, {:play_next, rally_count + 1})
         end
 
-        loop(name, other_player, phrase)
+        play(name, other_player, phrase)
 
       {:celebrate_point} ->
         IO.puts("######## #{name}: #{phrase} #######")
         :timer.sleep(500)
         send(self, {:serve})
-        loop(name, other_player, phrase)
+        play(name, other_player, phrase)
 
       _ ->
         IO.puts("I only know how to play tennis.")
-        loop(name, other_player, phrase)
+        play(name, other_player, phrase)
     end
   end
 end
 
-p1 = spawn_link(Player, :loop, ["Djokovic", :rafa, "Yeeaaaah!"])
+p1 = spawn_link(Player, :play, ["Djokovic", :rafa, "Yeeaaaah!"])
 Process.register(p1, :djoker)
 
-p2 = spawn_link(Player, :loop, ["Rafa", :djoker, "Vamos!"])
+p2 = spawn_link(Player, :play, ["Rafa", :djoker, "Vamos!"])
 Process.register(p2, :rafa)
 send(:djoker, {:serve})
 
