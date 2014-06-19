@@ -2,9 +2,9 @@
 
 (def transfer-count (atom 0))
 
-(let [fn-positive #(>= % 0)]
-  (def alice (ref 1000 :validator fn-positive))
-  (def bob (ref 2000 :validator fn-positive)))
+(let [fn-nonnegative #(>= % 0)]
+  (def alice (ref 1000 :validator fn-nonnegative))
+  (def bob (ref 2000 :validator fn-nonnegative)))
 
 (defn transfer [from to amount]
   (dosync
@@ -12,5 +12,5 @@
    (alter from - amount)
    (alter to + amount)))
 
-#_ (repeatedly 25 #(transfer alice bob 100))
+#_ (repeatedly 1 #(transfer alice bob 100))
 #_ (println[@alice @bob @transfer-count])

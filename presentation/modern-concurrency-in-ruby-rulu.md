@@ -186,9 +186,9 @@ puts "Final count, using atomic: #{counter.count}"
 ```clojure
 (def transfer-count (atom 0))
 
-(let [fn-positive #(>= % 0)]
-  (def alice (ref 1000 :validator fn-positive))
-  (def bob (ref 2000 :validator fn-positive)))
+(let [fn-nonnegative #(>= % 0)]
+  (def alice (ref 1000 :validator fn-nonnegative))
+  (def bob (ref 2000 :validator fn-nonnegative)))
 ```
 
 ---
@@ -412,7 +412,9 @@ Celluloid::Actor[:djoker].async.serve
 
 * Processes are _very very_ light-weight
 
-^Show how light they are
+^Show how light they are.
+100, 10_000, 100_0000 processes
+Then 1000_000 with +P
 
 ---
 
@@ -540,16 +542,15 @@ as it's in Clojure.
 
 ## core.async: channel functions
 
-* map-chan: TODO
-* onto-chan: TODO
+* map-chan
+* onto-chan
+* ...
 
 ---
 
 ## Channels in Ruby
 
-* TODO: headius/joe
-  * primitive, but a start
-  * been a bit stagnant
+* TODO: headius/jo
 
 ---
 
