@@ -22,7 +22,8 @@
 * Ofcourse, *_Ruby_* ...
 * Even some French!
 
-^ Any Pascal fans? We are in France, right?
+^ Nice cocktail.
+Any Pascal fans? We are in France, right?
 
 ---
 
@@ -44,9 +45,9 @@
 
 + @arnab_deka
 * [http://arnab-deka.com/](http://arnab-deka.com/)
-* NYC/Seattle => Bangalore
-* LivingSocial/Amazon/Infosys/GS
-* Ruby/Clojure/JS
+* Assam > Kerala > Pune > NYC > Seattle > Bangalore
+* Infosys/Goldman > Amazon > LivingSocial
+* C/C++ > Perl > Java > Ruby > Ruby/Clojure
 
 ^ French connections run deep
 
@@ -60,13 +61,12 @@
 
 ---
 
-## TODO: Neighbor is French!
-![fit]()
+![fit](http://www.montereylaw.edu/wp-content/uploads/2012/07/neighbors.gif)
 
-^As if that's not enough, neighbor is from ..., which is a town in ...
+^As if that's not enough, neighbor is from Lyon itself!
 If that's not deep enough a connection, I don't know what is. Come on,
 tell me how many of you know your neighbor's name? Where they are
-from? Have a selfie?
+from?
 
 ---
 
@@ -184,16 +184,11 @@ puts "Final count, using atomic: #{counter.count}"
 ## STM...
 
 ```clojure
-(defn transfer [from to amount]
-  (dosync
-   (swap! transfer-count inc)
-   (alter from - amount)
-   (alter to + amount)))
-
-(def alice (ref 1000 :validator #(>= % 0)))
-(def bob (ref 2000 :validator #(>= % 0)))
-
 (def transfer-count (atom 0))
+
+(let [fn-positive #(>= % 0)]
+  (def alice (ref 1000 :validator fn-positive))
+  (def bob (ref 2000 :validator fn-positive)))
 ```
 
 ---
@@ -201,13 +196,26 @@ puts "Final count, using atomic: #{counter.count}"
 ## STM...
 
 ```clojure
+(defn transfer [from to amount]
+  (dosync
+   (swap! transfer-count inc)
+   (alter from - amount)
+   (alter to + amount)))
+```
+
+---
+
+## STM...
+
+```
 (repeatedly 25 #(transfer alice bob 100))
+```
 
-;;; IllegalStateException Invalid reference state  clojure.lang.ARef.validate (ARef.java:33)
+=> **_IllegalStateException_**
 
-@alice          ;;; 0
-@bob            ;;; 3000
-@transfer-count ;;; 11
+```clojure
+(println[@alice @bob @transfer-count])
+;; => [0 3000 11]
 ```
 
 ---
@@ -269,10 +277,8 @@ puts "Final count, using atomic: #{counter.count}"
   * PyPy's Transactional Memory
 * Atoms
 
----
-
-# Promised French Ruby
-![fit](http://www.royal-magazin.de/french/tiara/brooch-ruby-crown-jewels.jpg)
+^ Alright, so we've seen a couple of ways of solving our problems. But
+do you know the best way? It's to do it in French!
 
 ---
 
