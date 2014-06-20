@@ -1,6 +1,24 @@
-# Modern Concurrency Practises in Ruby
+# Modern Concurrency Practices in Ruby
 
 #### @arnab_deka
+
+^ Lyon has been wonderful
+^ Love this auditorium
+
+---
+
+![fit](http://f.cl.ly/items/0T3U191A0q22383t3X0f/Screen%20Shot%202014-06-19%20at%2018.57.29%20pm.png)
+
+---
+
+![fit](http://f.cl.ly/items/1B2t1l040Y3o0i2z3C46/Screen%20Shot%202014-06-19%20at%2018.57.16%20pm.png)
+
+---
+
+![](http://f.cl.ly/items/061d3h2B1F2B2P0a3V2F/IMG_20140619_162112.jpg)
+
+^ Anyway, rather than talk about toilets, I'd like to talk about
+Ruby and concurrency today
 
 ---
 
@@ -19,7 +37,7 @@
 * Elixir
 * Clojure
 * Go
-* Ofcourse, *_Ruby_* ...
+* Of course, *_Ruby_* ...
 * Even some French!
 
 ^ Nice cocktail.
@@ -34,7 +52,7 @@ Any Pascal fans? We are in France, right?
 * Elixir
 * Clojure
 * Go
-* Ofcourse, *_Ruby_* ...
+* Of course, *_Ruby_* ...
 * Even some French!
 
 ## Sadly, **_NO_** Pascal
@@ -133,7 +151,7 @@ abstractions.
 # STM
 
 ![](http://smallbusiness.chron.com/DM-Resize/photos.demandstudios.com/getty/article/171/144/78364071.jpg?w=650&h=406&keep_ratio=1&webp=1)
-![](transactions.jpg)
+![original](http://3.bp.blogspot.com/_iYm10EqjH6A/THq4EyKD4EI/AAAAAAAAApE/903NVF_Otks/s1600/Matrix.jpg)
 
 ---
 
@@ -142,7 +160,10 @@ abstractions.
 + Compare and Swap
 + Lock-free
 + Non-blocking
-+ https://github.com/headius/ruby-atomic
+
+---
+
+![fit](http://f.cl.ly/items/341o1t2Q222O162E3c0E/Screen%20Shot%202014-06-19%20at%2019.17.42%20pm.png)
 
 ---
 
@@ -305,14 +326,15 @@ fin
 
 # Step 1
 
-### _*1763: French Indian War*_
+## _*1763: French Indian War*_
 
 ![original](french-indian-war.jpg)
 
 ---
 
 # Step 2
-### _*East India Companies: French > Brits*_
+## _*East India Companies:*_
+## _*French > Brits*_
 
 ![original](east-india-co.jpg)
 
@@ -404,7 +426,7 @@ Player.supervise_as(:djoker, "Djokovic")
 Celluloid::Actor[:djoker].async.serve
 ```
 
-^Let's play
+^Let's play. DEMO!
 
 ---
 
@@ -448,8 +470,27 @@ Then 1000_000 with +P
 
 ## What about Ruby?
 
-* Celluloid: http://celluloid.io/
-* DCell: https://github.com/celluloid/dcell
+![fill 80% inline](http://f.cl.ly/items/3H1P420d0i442r082M18/Screen%20Shot%202014-06-19%20at%2019.05.28%20pm.png)
+
+* Celluloid
+* DCell
+
+^ How does DCell work? over 0MQ
+
+---
+
+## Actors in Ruby: DCell
+
+* Over 0mq
+
+```ruby
+require 'dcell'
+
+DCell.start :id => "itchy", :addr => "tcp://127.0.0.1:9001"
+
+DCell.start :id => "scratchy", :addr => "tcp://127.0.0.1:9002"
+itchy_node = DCell::Node["itchy"]
+```
 
 ---
 
@@ -500,8 +541,9 @@ as it's in Clojure.
 
 ## core.async: buffering
 
-* **unbuffered** by default
-  * will **block** on reading from empty channels
+* **unbuffered** by default. Will **block** on
+  * reading from empty channels
+  * writing to non-empty channels
 
 ---
 
@@ -548,19 +590,6 @@ as it's in Clojure.
 
 ---
 
-## Channels in Ruby
-
-* TODO: headius/jo
-
----
-
-## Channels in Ruby
-
-* TODO: code snippet
-* TODO: Demo
-
----
-
 ## core.async: go blocks
 
 ```clojure
@@ -588,6 +617,17 @@ TODO: go-block scaling example
 
 ---
 
+![fit](http://f.cl.ly/items/1T3O0E2a1r1t2x2d3g1c/Screen%20Shot%202014-06-19%20at%2019.19.31%20pm.png)
+
+---
+
+## Channels in Ruby
+
+* TODO: code snippet
+* TODO: Demo
+
+---
+
 # Closing thoughts & Advice
 ![fit](http://www.rudebaguette.com/assets/Obama-Hollande.jpg)
 
@@ -608,11 +648,12 @@ TODO: go-block scaling example
 
 ---
 
-# RuLu
-![fit](http://cdn.shopify.com/s/files/1/0134/1572/products/Merci_Boucoup_Card.jpg)
+# Resources
+
+* github: arnab/modern-concurrency-rulu
+*  [presentation/resources.md](https://github.com/arnab/modern-concurrency-rulu/blob/master/presentation/resources.md)
 
 ---
 
-# Links
-
-* https://github.com/arnab/modern-concurrency-rulu/
+# RuLu
+![fit](http://cdn.shopify.com/s/files/1/0134/1572/products/Merci_Boucoup_Card.jpg)
